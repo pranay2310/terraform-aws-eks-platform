@@ -14,4 +14,8 @@ resource "aws_dynamodb_table" "terraform_lock" {
       Name = "${var.project_name}-${var.environment}-tf-lock"
     }
   )
+
+    lifecycle {
+    prevent_destroy = true
+  }
 }
