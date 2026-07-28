@@ -5,5 +5,5 @@ terraform {
     region         = "ap-south-1"
     dynamodb_table = "terraform-aws-eks-platform-dev-tf-lock"
     encrypt        = true
- }
+  }
 }

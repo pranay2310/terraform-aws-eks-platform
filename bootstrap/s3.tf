@@ -63,7 +63,7 @@ resource "aws_s3_bucket_ownership_controls" "terraform_state" {
     object_ownership = "BucketOwnerEnforced"
   }
 
-    lifecycle {
+  lifecycle {
     prevent_destroy = true
   }
 }
