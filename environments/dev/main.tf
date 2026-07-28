@@ -22,3 +22,16 @@ common_tags = {
 }
 
 }
+
+module "github_oidc" {
+
+  source = "../../modules/iam/github-oidc"
+
+  github_owner      = "pranay2310"
+
+  github_repository = "terraform-aws-eks-platform"
+
+  github_branch     = "main"
+
+  tags = local.common_tags
+}
