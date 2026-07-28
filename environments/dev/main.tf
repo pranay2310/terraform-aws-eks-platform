@@ -50,3 +50,94 @@ module "eks_iam" {
     Project     = "terraform-aws-eks-platform"
   }
 }
+
+module "eks" {
+
+  source = "../../modules/eks"
+
+  cluster_name = "dev-eks"
+
+  cluster_version = "1.33"
+
+  vpc_id = module.vpc.vpc_id
+
+  private_subnet_ids = module.vpc.private_subnet_ids
+
+  cluster_role_arn = module.eks_iam.cluster_role_arn
+
+  node_role_arn = module.eks_iam.node_role_arn
+
+  managed_node_groups = {
+
+    system = {
+
+      desired_size = 2
+
+      min_size = 2
+
+      max_size = 3
+
+      instance_types = [
+
+        "t3.medium"
+
+      ]
+
+      capacity_type = "ON_DEMAND"
+
+      labels = {
+
+        role = "system"
+
+      }
+
+      taints = []
+
+    }
+
+    applications = {
+
+      desired_size = 2
+
+      min_size = 1
+
+      max_size = 5
+
+      instance_types = [
+
+        "t3.medium"
+
+      ]
+
+      capacity_type = "SPOT"
+
+      labels = {
+
+        role = "application"
+
+      }
+
+      taints = []
+
+    }
+
+  }
+
+  endpoint_private_access = true
+
+  endpoint_public_access = true
+
+  tags = {
+
+    Environment = "dev"
+
+    Project = "terraform-aws-eks-platform"
+
+    Terraform = "true"
+
+  }
+  depends_on = [
+    module.eks_iam
+  ]
+
+}

@@ -21,3 +21,30 @@ output "node_role_name" {
 
   value = aws_iam_role.node.name
 }
+
+
+output "cluster_policy_attachment" {
+  value = aws_iam_role_policy_attachment.cluster_policy.id
+}
+
+output "node_policy_attachments" {
+  value = [
+    aws_iam_role_policy_attachment.worker_node.id,
+    aws_iam_role_policy_attachment.ecr_readonly.id,
+    aws_iam_role_policy_attachment.cni.id
+  ]
+}
+
+output "node_policy_attachment_dependency" {
+
+  value = [
+
+    aws_iam_role_policy_attachment.worker_node.id,
+
+    aws_iam_role_policy_attachment.ecr_readonly.id,
+
+    aws_iam_role_policy_attachment.cni.id
+
+  ]
+
+}
