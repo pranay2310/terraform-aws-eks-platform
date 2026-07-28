@@ -35,3 +35,18 @@ module "github_oidc" {
 
   tags = local.common_tags
 }
+
+module "eks_iam" {
+
+  source = "../../modules/iam/eks"
+
+  cluster_role_name = "dev-eks-cluster-role"
+
+  node_role_name = "dev-eks-node-group-role"
+
+  tags = {
+    Environment = "dev"
+    Terraform   = "true"
+    Project     = "terraform-aws-eks-platform"
+  }
+}
