@@ -141,3 +141,20 @@ module "eks" {
   ]
 
 }
+
+module "eks_addons" {
+  source = "../../modules/eks-addons"
+
+  cluster_name    = module.eks.cluster_name
+  cluster_version = "1.33"
+
+  tags = {
+    Environment = "dev"
+    Project     = "terraform-aws-eks-platform"
+    Terraform   = "true"
+  }
+
+  depends_on = [
+    module.eks
+  ]
+}

@@ -1,6 +1,6 @@
 resource "aws_security_group" "cluster" {
 
-  name        = "${var.cluster_name}-cluster-sg"
+  name = "${var.cluster_name}-cluster-sg"
 
   description = "EKS Cluster Security Group"
 

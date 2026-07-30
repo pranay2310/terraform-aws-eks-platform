@@ -60,8 +60,8 @@ resource "aws_eks_node_group" "this" {
 
   )
 
-depends_on = [
-  aws_eks_cluster.this
-]
+  depends_on = [
+    aws_eks_cluster.this
+  ]
 
 }
