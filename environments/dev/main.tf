@@ -142,11 +142,38 @@ module "eks" {
 
 }
 
+
+module "ebs_csi_irsa" {
+
+  source = "../../modules/irsa"
+
+  cluster_name = module.eks.cluster_name
+
+  oidc_provider_arn = module.eks.oidc_provider_arn
+
+  oidc_provider_url = module.eks.oidc_provider_url
+
+  namespace = "kube-system"
+
+  service_account_name = "ebs-csi-controller-sa"
+
+  role_name = "dev-eks-ebs-csi-irsa"
+
+  policy_arns = [
+    "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+  ]
+
+  tags = local.common_tags
+}
+
+
 module "eks_addons" {
   source = "../../modules/eks-addons"
 
   cluster_name    = module.eks.cluster_name
   cluster_version = "1.33"
+
+  ebs_csi_irsa_role_arn = module.ebs_csi_irsa.role_arn
 
   tags = {
     Environment = "dev"
@@ -158,3 +185,4 @@ module "eks_addons" {
     module.eks
   ]
 }
+

@@ -45,3 +45,11 @@ output "node_group_names" {
   value = keys(aws_eks_node_group.this)
 
 }
+
+output "oidc_provider_arn" {
+  value = aws_iam_openid_connect_provider.this.arn
+}
+
+output "oidc_provider_url" {
+  value = aws_iam_openid_connect_provider.this.url
+}
