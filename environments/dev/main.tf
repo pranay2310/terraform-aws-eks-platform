@@ -167,6 +167,38 @@ module "ebs_csi_irsa" {
 }
 
 
+module "alb_controller_irsa" {
+
+  source = "../../modules/irsa"
+
+  cluster_name = module.eks.cluster_name
+
+  oidc_provider_arn = module.eks.oidc_provider_arn
+
+  oidc_provider_url = module.eks.oidc_provider_url
+
+  namespace = "kube-system"
+
+  service_account_name = "aws-load-balancer-controller"
+
+  role_name = "dev-aws-load-balancer-controller-irsa"
+
+  policy_arns = [
+    module.alb_controller_iam.policy_arn
+  ]
+
+  tags = local.common_tags
+}
+
+
+module "alb_controller_iam" {
+
+  source = "../../modules/aws-load-balancer-controller"
+
+  cluster_name = module.eks.cluster_name
+}
+
+
 module "eks_addons" {
   source = "../../modules/eks-addons"
 
