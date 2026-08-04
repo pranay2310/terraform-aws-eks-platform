@@ -1,0 +1,7 @@
+clusterName: dev-eks
+
+region: ap-south-1
+
+serviceAccount:
+  create: false
+  name: aws-load-balancer-controller
