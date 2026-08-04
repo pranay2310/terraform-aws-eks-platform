@@ -14,7 +14,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: platform/environments/dev
+        working-directory: platform/environment/dev
 
     permissions:
       contents: read
