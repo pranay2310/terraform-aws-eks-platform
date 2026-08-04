@@ -11,3 +11,9 @@ module "aws_load_balancer_controller" {
   service_account_role_arn = "arn:aws:iam::376903139238:role/dev-aws-load-balancer-controller-irsa"
 
 }
+
+module "metrics_server" {
+
+  source = "../../modules/metrics-server"
+
+}

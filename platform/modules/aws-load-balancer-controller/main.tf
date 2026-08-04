@@ -21,9 +21,3 @@ resource "helm_release" "this" {
     })
   ]
 }
-
-module "metrics_server" {
-
-  source = "../../modules/metrics-server"
-
-}
