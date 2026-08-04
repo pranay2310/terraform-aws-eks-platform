@@ -3,5 +3,7 @@ clusterName: dev-eks
 region: ap-south-1
 
 serviceAccount:
-  create: false
+  create: true
   name: aws-load-balancer-controller
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::376903139238:role/dev-aws-load-balancer-controller-irsa
