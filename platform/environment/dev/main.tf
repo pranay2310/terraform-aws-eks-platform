@@ -2,5 +2,12 @@ module "aws_load_balancer_controller" {
 
   source = "../../modules/aws-load-balancer-controller"
 
-  values_file = "../../helm/aws-load-balancer-controller/values.yaml"
+  cluster_name = data.aws_eks_cluster.this.name
+
+  region = var.aws_region
+
+  vpc_id = data.aws_eks_cluster.this.vpc_config[0].vpc_id
+
+  service_account_role_arn = "arn:aws:iam::376903139238:role/dev-aws-load-balancer-controller-irsa"
+
 }
