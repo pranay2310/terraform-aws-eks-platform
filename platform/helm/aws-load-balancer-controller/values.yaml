@@ -2,6 +2,8 @@ clusterName: dev-eks
 
 region: ap-south-1
 
+vpcId: vpc-03005071b89c551b1
+
 serviceAccount:
   create: true
   name: aws-load-balancer-controller
