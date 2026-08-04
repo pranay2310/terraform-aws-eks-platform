@@ -1,8 +1,8 @@
 resource "helm_release" "this" {
 
-  name             = "aws-load-balancer-controller"
-  repository       = "https://aws.github.io/eks-charts"
-  chart            = "aws-load-balancer-controller"
+  name       = "aws-load-balancer-controller"
+  repository = "https://aws.github.io/eks-charts"
+  chart      = "aws-load-balancer-controller"
 
   namespace        = "kube-system"
   create_namespace = false
@@ -20,4 +20,10 @@ resource "helm_release" "this" {
       role_arn     = var.service_account_role_arn
     })
   ]
+}
+
+module "metrics_server" {
+
+  source = "../../modules/metrics-server"
+
 }
