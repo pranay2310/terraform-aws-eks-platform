@@ -218,3 +218,16 @@ module "eks_addons" {
   ]
 }
 
+module "ecr" {
+
+  source = "../../modules/ecr"
+
+  repository_name = "fastapi-gitops-demo"
+
+  tags = {
+    project     = "terraform-aws-eks-platform"
+    environment = "dev"
+    owner       = "Pranay"
+    ManagedBy   = "Terraform"
+  }
+}
