@@ -17,3 +17,9 @@ module "metrics_server" {
   source = "../../modules/metrics-server"
 
 }
+
+module "argocd" {
+
+  source = "../../modules/argocd"
+
+}
