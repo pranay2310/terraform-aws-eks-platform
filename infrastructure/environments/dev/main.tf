@@ -224,5 +224,5 @@ module "ecr" {
 
   repository_name = "fastapi-gitops-demo"
 
-tags = local.common_tags
+  tags = local.common_tags
 }
