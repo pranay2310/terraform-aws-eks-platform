@@ -224,10 +224,5 @@ module "ecr" {
 
   repository_name = "fastapi-gitops-demo"
 
-  tags = {
-    project     = "terraform-aws-eks-platform"
-    environment = "dev"
-    owner       = "Pranay"
-    ManagedBy   = "Terraform"
-  }
+tags = local.common_tags
 }
